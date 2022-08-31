@@ -2,10 +2,6 @@
 
 This has a pretty specific use case, [BuildHub#456](https://github.com/mozilla-services/buildhub/issues/465).  This will generate random files into S3 and every so often generate a [buildhub.json](https://bugzilla.mozilla.org/show_bug.cgi?id=1442306) file. 
 
-## AWS Credentials
-
-Make sure your AWS DEV IAM credentials are in `./aws/config`.  Right now it only supports them being your `[default]` credentials... `¯\_(ツ)_/¯`.
-
 ## Install and Usage
 
 ```
@@ -22,14 +18,18 @@ $ ./main
 # run-time options 
 $ ./main --help
 Usage of ./main:
-  -bucket string
+    -bucket string
         s3 bucket name (default "buildhub-sqs-test")
-  -chance int
-        chance out of 100 a buildhub.json file is generated (default 25)
-  -delay int
+    -chance int
+        chance out of 100 a buildhub.json file is generated (default 10)
+    -delay int
         milliseconds between creating files (default 2000)
-  -num int
+    -num int
         how many random files will be generated (default 100)
+    -profile string
+        aws profile name (default "profile-name")
+    -region string
+        aws region (default "eu-central-1")
         
 ## GENERATE FOR A LONG TIME
 $ ./main -num 100000 -delay 1000         
@@ -39,4 +39,7 @@ $ ./main -delay 10
 
 ## GENERATE LOTS OF BUILDHUB.JSON FILES
 $ ./main -chance 80
+
+## Use Profile and Region
+$ ./main -delay 1 -num 14000000 --profile aws-profile -bucket bucketname --region eu-west-1
 ```

@@ -19,6 +19,8 @@ import (
 
 var (
 	bucket   string
+	profile  string
+	region   string
 	numFiles int
 	chance   int
 	delay    int
@@ -26,6 +28,8 @@ var (
 
 func init() {
 	flag.StringVar(&bucket, "bucket", "buildhub-sqs-test", "s3 bucket name")
+	flag.StringVar(&profile, "profile", "profile-name", "aws profile name")
+	flag.StringVar(&region, "region", "eu-central-1", "aws region")
 	flag.IntVar(&numFiles, "num", 100, "how many random files will be generated")
 	flag.IntVar(&chance, "chance", 10, "chance out of 100 a buildhub.json file is generated")
 	flag.IntVar(&delay, "delay", 2000, "milliseconds between creating files")
@@ -37,7 +41,11 @@ func main() {
 	flag.Parse()
 
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
-		Config:            aws.Config{Region: aws.String("us-west-2")},
+		Profile: profile,
+		Config: aws.Config{
+			Region: aws.String(region),
+		},
+		// Force enable Shared Config support
 		SharedConfigState: session.SharedConfigEnable,
 	}))
 

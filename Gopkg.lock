@@ -3,11 +3,14 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:9a5222e3c9816255ed45e7bfed08bf8ff88950acf7718b1816a8a8e0191814a4"
   name = "github.com/Pallinder/go-randomdata"
   packages = ["."]
+  pruneopts = "UT"
   revision = "b073033ef5a7c42a3f188393575a0850919777a6"
 
 [[projects]]
+  digest = "1:593c11c387675ce5c203a3e2d0bd7b946a85ec62daabf210fb80cef753be02f0"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -38,25 +41,35 @@
     "service/s3",
     "service/s3/s3iface",
     "service/s3/s3manager",
-    "service/sts"
+    "service/sts",
   ]
+  pruneopts = "UT"
   revision = "c7cd1ebe87257cde9b65112fc876b0339ea0ac30"
   version = "v1.13.49"
 
 [[projects]]
+  digest = "1:4afe9b10ebaf13d77f8bad44b2af5a55c17699b375601a6383a671b0713845b9"
   name = "github.com/go-ini/ini"
   packages = ["."]
+  pruneopts = "UT"
   revision = "6529cf7c58879c08d927016dde4477f18a0634cb"
   version = "v1.36.0"
 
 [[projects]]
+  digest = "1:e22af8c7518e1eab6f2eab2b7d7558927f816262586cd6ed9f349c97a6c285c4"
   name = "github.com/jmespath/go-jmespath"
   packages = ["."]
+  pruneopts = "UT"
   revision = "0b12d6b5"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f8865a851b5d35d77edbf7eef93bc576a562227e1113086fff18a14efc65bff6"
+  input-imports = [
+    "github.com/Pallinder/go-randomdata",
+    "github.com/aws/aws-sdk-go/aws",
+    "github.com/aws/aws-sdk-go/aws/session",
+    "github.com/aws/aws-sdk-go/service/s3/s3manager",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
